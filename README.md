@@ -1,6 +1,6 @@
 # IncDSI
 
-This repo contains official PyTorch implementation of [IncDSI: Incrementally Updatable Document Retrieval]([https://openreview.net/pdf?id=gLPkzWjdhBN](http://proceedings.mlr.press/v202/kishore23a/kishore23a.pdf)) (ICML 2023).
+This repo contains official PyTorch implementation of [IncDSI: Incrementally Updatable Document Retrieval](http://proceedings.mlr.press/v202/kishore23a/kishore23a.pdf) (ICML 2023).
 
 ```
 @article{kishore2023incdsi,
