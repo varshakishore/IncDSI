@@ -4,6 +4,9 @@ This repo contains official PyTorch implementation of [IncDSI: Incrementally Upd
 
 ## Introduction
 
+## Instructions
+
+## Citation
 ```
 @article{kishore2023incdsi,
   title={IncDSI: Incrementally Updatable Document Retrieval},
