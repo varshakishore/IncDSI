@@ -22,6 +22,11 @@ problem that makes minimal changes to the network parameters. Although orders of
 The paper presents results on [NQ320K](https://ai.google.com/research/NaturalQuestions) and [MS MARCO](https://microsoft.github.io/msmarco/) datasets. Download and extract the pre-processed datasets from [here](https://drive.google.com/drive/folders/1JB-DVA3hrk9gIQlTIfRhnGFq5lgZo400?usp=sharing) into `IncDSI/data`. For details about how the datasets were pre-processed and split, please refer to the [paper](http://proceedings.mlr.press/v202/kishore23a/kishore23a.pdf).
 
 ## Instructions
+#### Training an initial DSI style model
+
+#### Caching embeddings for queries 
+
+#### IncDSI
 
 ## Citation
 ```
