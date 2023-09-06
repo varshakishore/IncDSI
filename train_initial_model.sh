@@ -3,7 +3,7 @@ batch_size=128
 learning_rate=0.00001
 train_epochs=20
 logging_step=200
-output_dir="/home/vk352/IncDSI/test_output/initial_model_temp/"
+output_dir="$1"
 wandb_name="initial_model"
 
 train_cmd="
