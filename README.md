@@ -23,13 +23,27 @@ The paper presents results on [NQ320K](https://ai.google.com/research/NaturalQue
 
 ## Instructions
 #### Training an initial DSI model
+Train a DSI document retrieval model on the set of old documents. 
 ```bash
-bash train_initial_model.sh /pathto/IncDSI/data/NQ320k /pathto/IncDSI/output/initial_model/
+cd IncDSI
+bash train_initial_model.sh "$(pwd)/data/dataset_name" "$(pwd)/output/initial_model/"
 ```
+The dataset_name can be "NQ320k" or "MSMARCO." The first path points to the data directory and the second path points to the ouput directory. 
 
 #### Caching embeddings for queries 
+The query embeddings for the old and new documents are cached by using the embeddings from the model trained in the step above.
+```bash
+cd IncDSI
+bash save_embeddings.sh "$(pwd)/output/initial_model/base_model_epoch20" "$(pwd)/output/saved_embeddings/" "NQ320K"
+```
+Note: If the initial models is not trained for 20 epochs, update the first path to point to the correct final model.
 
 #### IncDSI
+IncDSI is used to add new documents. 
+```bash
+cd IncDSI
+bash incdsi.sh "$(pwd)/data/dataset_name" "$(pwd)/output/saved_embeddings/" "$(pwd)/output/initial_model/base_model_epoch20" "$(pwd)/output/final_incdsi_model/"
+```
 
 ## Citation
 ```
