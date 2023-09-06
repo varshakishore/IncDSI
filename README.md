@@ -5,9 +5,18 @@ This repo contains official PyTorch implementation of [IncDSI: Incrementally Upd
 ## Introduction
 
 ## Environment
+- Python >= 3.8
+- pyTorch >= 1.11
+- CUDA >= 11.3
+- cuDNN >= 7.6
+- tqdm
+- datasets >= 1.18.3
+- transformers >= 4.20.1
+- numpy >= 1.22.4
+- wandb >= 0.12.21 (optional)
 
 ## Data
-The paper presents results on NQ320K and MS MARCO datasets. The pre-processed dataset used in the paper can be downloaded from [here](https://drive.google.com/drive/folders/1JB-DVA3hrk9gIQlTIfRhnGFq5lgZo400?usp=sharing).
+The paper presents results on NQ320K and MS MARCO datasets. Download and extract the pre-processed datasets from [here](https://drive.google.com/drive/folders/1JB-DVA3hrk9gIQlTIfRhnGFq5lgZo400?usp=sharing) into `IncDSI/`.
 
 ## Instructions
 
