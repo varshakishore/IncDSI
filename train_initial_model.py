@@ -104,7 +104,7 @@ def get_arguments():
     parser.add_argument(
         "--base_data_dir",
         type=str,
-        default="/home/vk352/dsi/data/NQ320k",
+        required=True,
         help="where the train/test/val data is located",
     )
 
@@ -299,10 +299,7 @@ def validate_script(args, tokenizer, model, doc_type=None, split=None, filter_do
         doc_class = joblib.load(os.path.join(data_dir, 'doc_class.pkl'))
     elif doc_type == "new":
         data_dir = os.path.join(args.base_data_dir, 'new_docs')
-        if permutation_seed is None:
-            doc_class = joblib.load(os.path.join(data_dir, 'doc_class.pkl'))
-        else:
-            doc_class = joblib.load(os.path.join('/home/jl3353/dsi/data/NQ320k/new_docs', f'doc_class_seed{permutation_seed}.pkl'))
+        doc_class = joblib.load(os.path.join(data_dir, 'doc_class.pkl'))
         if 'MSMARCO' in args.base_data_dir:
             doc_list = joblib.load(os.path.join(data_dir, 'doc_list.pkl'))
             doc_list = doc_list[:10000]

@@ -25,8 +25,8 @@ def get_arguments():
 
     parser.add_argument(
         "--dataset", 
-        default='nq320k', 
-        choices=['nq320k','msmarco'], 
+        default='NQ320k', 
+        choices=['NQ320k','MSMARCO'], 
         help='which dataset to use')
 
     parser.add_argument(
@@ -56,6 +56,13 @@ def get_arguments():
         default = 'train',
         choices=['train','val', 'test', 'gen'],
         help="which split to save"
+    )
+
+    parser.add_argument(
+        "--base_data_dir",
+        type=str,
+        required=True,
+        help="where the train/test/val data is located",
     )
     
     args = parser.parse_args()
@@ -106,29 +113,13 @@ def main():
     model = QueryClassifier(class_num)
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',cache_dir='cache')
 
-    if args.dataset == 'nq320k':
-        data_dirs = {'data': '/home/vk352/dsi/data/NQ320k',
-                    'old': '/home/vk352/dsi/data/NQ320k/old_docs/',
-                    'tune': '/home/vk352/dsi/data/NQ320k/tune_docs/',
-                    'new': '/home/vk352/dsi/data/NQ320k/new_docs/'}
-        if args.doc_split in ['old', 'new']:
+    if args.dataset == 'NQ320k' or args.dataset == 'MSMARCO':
+        data_dirs = {'data': args.base_data_dir,
+                    'old': os.path.join(args.base_data_dir, "old_docs"),
+                    'tune': os.path.join(args.base_data_dir, "tune_docs"),
+                    'new': os.path.join(args.base_data_dir, "new_docs")}
+        if args.doc_split in ['old', 'new', 'tune']:
             doc2class = joblib.load(os.path.join(data_dirs[args.doc_split], 'doc_class.pkl'))
-        elif args.doc_split == 'tune':
-            # Hardcoded path for tuning set
-            doc2class = joblib.load('/home/jl3353/dsi/data/NQ320k/tune_docs/doc_class.pkl')
-        else:
-            raise ValueError(f'{args.doc_split} split not supported for {args.dataset} dataset')
-        dataset_cls = partial(get_dataset, doc_class=doc2class)
-        gen_dataset_cls = partial(get_dataset, doc_class=doc2class)
-    elif args.dataset == 'msmarco':
-        data_dirs = {'data': '/home/cw862/MSMARCO',
-                    'old': '/home/cw862/MSMARCO/old_docs/',
-                    'tune': '/home/cw862/MSMARCO/tune_docs/',
-                    'new': '/home/cw862/MSMARCO/new_docs/'}
-        if args.doc_split in ['old', 'new']:
-            doc2class = joblib.load(os.path.join(data_dirs[args.doc_split], 'doc_class.pkl'))
-        elif args.doc_split == 'tune':
-            doc2class = joblib.load('/home/cw862/MSMARCO/tune_docs/doc_class.pkl')
         else:
             raise ValueError(f'{args.doc_split} split not supported for {args.dataset} dataset')
         dataset_cls = partial(get_dataset, doc_class=doc2class)

@@ -621,7 +621,6 @@ def save_bayesian_opt_plots(args, model, experiment):
 def main():
     set_seed()
     args = get_arguments()
-    set_file_paths(args)
     os.makedirs(args.write_path_dir, exist_ok=True)
     with open(os.path.join(args.write_path_dir, 'args.json'), 'w') as f:
         json.dump(args.__dict__, f, indent=2)
