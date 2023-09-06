@@ -1,0 +1,1 @@
+python incdsi.py --trials 30 --dataset nq320k --optimizer lbfgs --squared_hinge --harmonic_beta 5 --bayesian_target harmonic_mean --multiple_queries --tune_parameters --lbfgs_iterations 30 --train_q --num_qs 15 --write_path_dir "/home/vk352/IncDSI/test_output/final_incdsi_model/" --mean_new_q
